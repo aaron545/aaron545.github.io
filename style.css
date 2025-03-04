@@ -47,13 +47,16 @@ nav ul li a {
 }
 
 .jewelry {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 自動適應欄數 */
     justify-content: center;
     gap: 20px;
     padding: 20px;
 }
 
 .item {
+    width: 200px;
+    height: 300px;
     background: white;
     padding: 15px;
     border-radius: 8px;
@@ -62,7 +65,7 @@ nav ul li a {
 }
 
 .item img {
-    width: 150px;
+    width: 150px%;
     height: 150px;
     object-fit: cover;
     border-radius: 8px;
