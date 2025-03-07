@@ -1,0 +1,95 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增珠寶項目</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<form id="addItemForm" class="form-container">
+    <h1>新增珠寶項目</h1>
+    <div class="form-group">
+        <label for="name">名稱</label>
+        <input type="text" id="name" placeholder="名稱" required>
+    </div>
+    <div class="form-group">
+        <label for="image">圖片</label>
+        <input type="file" id="image" accept="image/*" required>
+        <div id="imagePreviewContainer"></div>
+    </div>
+    <div class="form-group">
+        <label for="material">材質</label>
+        <input type="text" id="material" placeholder="材質" required>
+    </div>
+    <div class="form-group">
+        <label for="price">價格</label>
+        <input type="text" id="price" placeholder="價格" required>
+    </div>
+    <div class="form-group">
+        <label for="category">類別</label>
+        <input type="text" id="category" placeholder="類別" required>
+    </div>
+    <button type="submit">新增項目</button>
+</form>
+
+<script>
+    document.getElementById('image').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const previewContainer = document.getElementById('imagePreviewContainer');
+
+        // 清空舊的預覽圖片
+        previewContainer.innerHTML = '';
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.createElement('img');
+                preview.src = e.target.result;
+                preview.alt = "圖片預覽";
+                preview.style.maxWidth = '200px';
+                preview.style.display = 'block';
+                preview.style.marginTop = '10px'; // 讓圖片和輸入框有一點間距
+                previewContainer.appendChild(preview);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.getElementById('addItemForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const formData = new FormData();
+        formData.append('image', document.getElementById('image').files[0]);
+
+        fetch('/upload-image', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.imageUrl) {
+                throw new Error('圖片上傳失敗');
+            }
+
+            const newItem = {
+                name: document.getElementById('name').value,
+                image: data.imageUrl, // 這裡改為伺服器回傳的圖片 URL
+                material: document.getElementById('material').value,
+                price: document.getElementById('price').value,
+                category: document.getElementById('category').value
+            };
+
+            return fetch('/api/jewelry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newItem)
+            });
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('新增成功！');
+            console.log('成功新增物品:', data);
+            location.reload(); // 重新載入頁面，讓新物品顯示
+        })
+        .catch(error => console.error('新增物品失敗:', error));
+    });
+
+</script>

@@ -1,0 +1,58 @@
+[
+    {
+        "name": "喵喵怪1戒指",
+        "image": "images/head.png",
+        "material": "喵喵怪，腦子",
+        "price": "NT$500",
+        "category": "戒指"
+    },
+    {
+        "name": "喵喵怪2戒指",
+        "image": "images/head.png",
+        "material": "喵喵怪，腦子",
+        "price": "NT$300",
+        "category": "戒指"
+    },
+    {
+        "name": "喵喵怪1吊墜",
+        "image": "images/wait.png",
+        "material": "喵喵怪、等一下",
+        "price": "NT$800",
+        "category": "吊墜"
+    },
+    {
+        "name": "喵喵怪2吊墜",
+        "image": "images/wait.png",
+        "material": "喵喵怪、等一下",
+        "price": "NT$550",
+        "category": "吊墜"
+    },
+    {
+        "name": "喵喵怪1手串",
+        "image": "images/haha.png",
+        "material": "喵喵怪，哈哈",
+        "price": "NT$100",
+        "category": "手串"
+    },
+    {
+        "name": "喵喵怪2手串",
+        "image": "images/haha.png",
+        "material": "喵喵怪，哈哈",
+        "price": "NT$150",
+        "category": "手串"
+    },
+    {
+        "name": "喵喵怪1手鐲",
+        "image": "images/look.png",
+        "material": "喵喵怪、旁觀",
+        "price": "NT$200",
+        "category": "手鐲"
+    },
+    {
+        "name": "喵喵怪2手鐲",
+        "image": "images/look.png",
+        "material": "喵喵怪、旁觀",
+        "price": "NT$300",
+        "category": "手鐲"
+    }
+]
